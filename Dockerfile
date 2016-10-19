@@ -1,13 +1,12 @@
-FROM centos:6.8 
+FROM centos:6.8
 MAINTAINER Mateusz Gora
-# Install Required RPM Packages 
+# Install Required RPM Packages
 RUN yum install httpd -y; yum clean all
 RUN yum install mysql-server mysql -y; yum clean all
 RUN yum install php php-mysqli -y; yum clean all
-# Initialize Database Directory 
-
-RUN service mysql start
-RUN service httpd start
-##################### INSTALLATION END ##################### 
-EXPOSE 80 
-CMD ["/usr/sbin/init"]
+# Initialize Database Directory
+RUN chkconfig mysqld on
+RUN chkconfig httpd on
+##################### INSTALLATION END #####################
+EXPOSE 80
+CMD ["/usr/bin/mysqld_safe"]
