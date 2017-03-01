@@ -10,4 +10,5 @@ RUN service mysqld start && sleep 10
 RUN chkconfig httpd on
 ##################### INSTALLATION END #####################
 EXPOSE 80
+
 CMD ["/sbin/init"]
